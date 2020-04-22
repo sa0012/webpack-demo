@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/assets/style/reset.scss"],"names":[],"mappings":"AAAA,KAAK,gCAAgC,wBAAwB,qBAAqB,gBAAgB,sBAAsB,sBAAsB","file":"css/main.278cb25d.css","sourcesContent":[".box{transform:translate(-50%, -50%);-webkit-appearance:none;-moz-appearance:none;appearance:none;background-origin:0 0;background-size:cover;transition:all 0.3s ease}\n"],"sourceRoot":""}
