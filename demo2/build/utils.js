@@ -55,9 +55,19 @@ exports.cssLoaders = function (options) {
   function generateSassResourceLoader () {
     return [
       cssLoader,
-      'sass-loader'
+      'sass-loader',
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.resolve(__dirname, '../src/assets/style/vars.scss')
+          ]
+        }
+      }
     ]
   }
+
+  console.log(JSON.stringify(generateLoaders()))
 
   return {
     css: generateLoaders(),
