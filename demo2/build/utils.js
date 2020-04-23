@@ -23,9 +23,28 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  let postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      plugins: function () {
+        return [
+          require('autoprefixer')()
+        ]
+      }
+    }
+  }
+
+  let miniCssExtractLoader = {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+      hmr: false,
+      reloadAll: true
+    }
+  }
+
   // 对于sass, less, stulys 需要配合各自对应的loader
   function generateLoaders (loader, loaderOptions) {
-    let loaders = [cssLoader]
+    let loaders = [cssLoader, postcssLoader]
 
     if (loader) {
       loaders.push({
@@ -38,13 +57,9 @@ exports.cssLoaders = function (options) {
 
     // 生产环境使用mini-css-extract-plugin 去拆解css文件
     if (options.extract) {
-      return {
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          hmr: false,
-          reloadAll: true,
-        }
-      }
+      return [
+        miniCssExtractLoader
+      ].concat(loaders)
     } else {
       // 开发环境可使用style-loader去插入css
       return ['style-loader'].concat(loaders)
@@ -53,8 +68,9 @@ exports.cssLoaders = function (options) {
 
   // 引入scss全局变量
   function generateSassResourceLoader () {
-    return [
+    let loaders = [
       cssLoader,
+      postcssLoader,
       'sass-loader',
       {
         loader: 'sass-resources-loader',
@@ -65,14 +81,22 @@ exports.cssLoaders = function (options) {
         }
       }
     ]
-  }
 
-  console.log(JSON.stringify(generateLoaders()))
+    // 生产环境使用mini-css-extract-plugin 去拆解css文件
+    if (options.extract) {
+      return [
+        miniCssExtractLoader
+      ].concat(loaders)
+    } else {
+      // 开发环境可使用style-loader去插入css
+      return ['style-loader'].concat(loaders)
+    }
+  }
 
   return {
     css: generateLoaders(),
-    postcss: generateLoaders(),
-    sass: generateSassResourceLoader(),
+    // postcss: generateLoaders(),
+    // sass: generateSassResourceLoader(),
     scss: generateSassResourceLoader()
   }
 }
@@ -88,8 +112,6 @@ exports.styleLoaders = function (options) {
       use: loader
     })
   }
-
-  console.log(output, 'output')
 
   return output
 }
