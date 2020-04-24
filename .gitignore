@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules
 # /dist
@@ -19,3 +20,11 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+=======
+# OSX
+#
+.DS_Store
+node_modules/
+npm-debug.log
+# dist/
+>>>>>>> e8ed123cedb2c7185a94a03329915e2822364c0e
