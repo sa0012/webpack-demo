@@ -27,11 +27,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     devServer: {
-      '/h5-api': {
-        target: 'https://baidu.com',
+      '/v2': {
+        target: 'https://api.douban.com',
         changeOrigin: true,
         pathRewrite: {
-          '^/h5-api': '/'
+          '^/v2': '/v2'
         }
       }
     }

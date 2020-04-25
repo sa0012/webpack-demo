@@ -107,9 +107,11 @@ exports.styleLoaders = function (options) {
   let loaders = exports.cssLoaders(options)
   for (let extension in loaders) {
     let loader = loaders[extension]
+    console.log(new RegExp('\\.' + extension + '$'))
     output.push({
       test: new RegExp('\\.' + extension + '$'),
-      use: loader
+      use: loader,
+      include: [path.resolve(__dirname, '../src')]
     })
   }
 
