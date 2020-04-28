@@ -33,29 +33,29 @@ class Person {
       let data = ctxt.getImageData(0, 0, 350, 200).data;//读取整张图片的像素。
       let x=0,y=0;
       for(let i =0,len = data.length; i<len;i+=4){
-              let red = data[i],//红色色深
-              green = data[i+1],//绿色色深
-              blue = data[i+2],//蓝色色深
-              alpha = data[i+3];//透明度
-              //把每个像素点，以二位数组的形式展开
-              if(`${red} ${green} ${blue}` === '210 227 199'){
-                  coordinates[y][x] = 0;
-              }else{
-                  coordinates[y][x] = 1;
-              }
-              x++;
-              if(x >= 350){
-                  x = 0;
-                  y++;
-              }
-          }
-          // console.log(coordinates);
-          let rst = getCountAndArea();
-          // console.log(rst);
-          console.log('个数： ' + rst.count);
-          for(let i=0; i<rst.sum.length; i++){
-              console.log(`第${i+1}个面积为: ${rst.sum[i].area} px`);
-          }
+        let red = data[i],//红色色深
+        green = data[i+1],//绿色色深
+        blue = data[i+2],//蓝色色深
+        alpha = data[i+3];//透明度
+        //把每个像素点，以二位数组的形式展开
+        if(`${red} ${green} ${blue}` === '210 227 199'){
+            coordinates[y][x] = 0;
+        }else{
+            coordinates[y][x] = 1;
+        }
+        x++;
+        if(x >= 350){
+            x = 0;
+            y++;
+        }
+    }
+    // console.log(coordinates);
+    let rst = getCountAndArea();
+    // console.log(rst);
+    console.log('个数： ' + rst.count);
+    for(let i=0; i<rst.sum.length; i++){
+        console.log(`第${i+1}个面积为: ${rst.sum[i].area} px`);
+    }
   }
 
   const getCountAndArea = () =>{
